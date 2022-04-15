@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Services\RssUrl;
+namespace App\Services\RssFeed;
 
 use App\Interfaces\RssFeedRepositoryInterface;
 use App\Interfaces\RssFeedServiceInterface;
@@ -14,7 +14,6 @@ class RssFeedService implements RssFeedServiceInterface
     private $repo;
 
     /**
-     *
      * @param RssFeedRepositoryInterface $repository
      */
     public function __construct(RssFeedRepositoryInterface $repository) {
@@ -37,7 +36,11 @@ class RssFeedService implements RssFeedServiceInterface
         return $this->repo->getPaginatedData($perPage);
     }
 
-
+    /**
+     * Deleting RssFeed
+     * @param int $id
+     * @return bool
+     */
     public function delete(int $id): bool {
         return $this->repo->delete($id);
     }

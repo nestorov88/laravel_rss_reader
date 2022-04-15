@@ -11,7 +11,6 @@ class RssFeedController extends Controller
 {
 
     public function index(RssFeedServiceInterface $service) {
-
         return view('rss.feeds.index', [
             'urls' => $service->getPaginatedData()
         ]);
@@ -50,6 +49,7 @@ class RssFeedController extends Controller
             $deleted = $service->delete($id);
 
         } catch (\Exception $exception) {
+
             return redirect()->back()->withErrors($exception->getMessage());
         }
 

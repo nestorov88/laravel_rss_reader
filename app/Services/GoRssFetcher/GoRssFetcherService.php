@@ -3,6 +3,7 @@
 namespace App\Services\GoRssFetcher;
 
 use App\Interfaces\RssFetcherInterface;
+use App\Interfaces\RssItemsServiceInterface;
 use Illuminate\Support\Facades\Http;
 
 class GoRssFetcherService implements RssFetcherInterface
@@ -11,6 +12,7 @@ class GoRssFetcherService implements RssFetcherInterface
     public function __construct(
         protected string $url,
         protected string $port,
+        protected RssItemsServiceInterface $rssItemsService,
     ) {}
 
     /**
@@ -23,7 +25,12 @@ class GoRssFetcherService implements RssFetcherInterface
         $response = Http::withHeaders([
             'Accept' => 'application/json',
         ])
-        ->post("{$this->url}:{$this->port}", $urls);
+        ->post("{$this->url}:{$this->port}/parse", $urls);
 
+        $items = json_decode($response->body());
+
+        foreach ($items->items as $item) {
+            $this->rssItemsService->store($item->source_url, $item->title, $item->link, $item->description);
+        }
     }
 }

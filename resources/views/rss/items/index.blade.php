@@ -4,14 +4,30 @@
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">Rss Feeds</div>
-                    <div class="card-body">
-                        <p>You are in Index Page</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Title
+                                <p></p>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($items as $item)
+                            <tr>
+                                <td>
+                                    <a href="{{$item->url}}" target="_blank"> {{$item->title}}</a>
+                                    <p></p>
+                                </td>
+                            </tr>
 
-                    </div>
-                </div>
+                        @endforeach
+                    </tbody>
+                    <tfoot></tfoot>
+                </table>
             </div>
+            {{$items->links()}}
         </div>
     </div>
 @endsection

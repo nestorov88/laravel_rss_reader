@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('url')->nullable(false);
             $table->longText('description')->nullable(true)->default(null);
 
-            $table->foreign('feed_id')->references('id')->on('rss_feeds');
+            $table->foreign('feed_id')->references('id')->on('rss_feeds')->onDelete('cascade');
 
             $table->timestamps();
         });

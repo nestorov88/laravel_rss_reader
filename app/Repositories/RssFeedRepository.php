@@ -47,4 +47,8 @@ class RssFeedRepository implements RssFeedRepositoryInterface
 
         return $feed->delete();
     }
+
+    public function getFeedByUrlLike(string $url) {
+        return RssFeed::where('url', 'LIKE', "%{$url}%")->first();
+    }
 }
