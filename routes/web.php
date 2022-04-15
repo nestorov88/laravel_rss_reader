@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\RssFeedItemsController;
+use App\Http\Controllers\RssFeedController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,19 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
+
+
+Route::controller(RssFeedItemsController::class)->group(function () {
+
+    Route::get('/feed', 'index')->name('feed.index');
+
+});
+
+
+
+Route::resource('url', RssFeedController::class, [
+    'only' => ['index', 'create', 'store', 'destroy']
+]);
+
