@@ -29,6 +29,12 @@ Route::controller(RssFeedItemsController::class)->group(function () {
 
 
 Route::resource('url', RssFeedController::class, [
-    'only' => ['index', 'create', 'store', 'destroy']
+    'only' => ['index', 'create', 'store', ]
 ]);
+
+Route::controller(RssFeedController::class)->group(function () {
+
+    Route::get('url/{id}/delete', 'delete')->name('url.delete');
+
+});
 

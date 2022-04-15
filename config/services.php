@@ -31,4 +31,9 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'go-rss-fetcher' => [
+        'url' => env('RSS_FETCHER_URL', '127.0.0.1'),
+        'port' => env('RSS_FETCHER_PORT', 9000),
+    ]
+
 ];

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <a href="{{route('url.create')}}" class="btn btn-primary col-md-1"><i class="glyphicon glyphicon-edit"></i> New</a>
+        <a href="{{route('url.create')}}" class="btn btn-primary col-md-1">New</a>
         <p></p>
         <div class="row justify-content-center">
             @foreach($urls as $url)
@@ -10,7 +10,10 @@
                     <div class="card">
                         <div class="card-header">{{$url->title}}</div>
                         <div class="card-body">
-                            <p>URL: {{$url->url}}</p>
+                            <p class="card-text">
+                                URL: {{$url->url}}
+                            </p>
+                            <a href="{{route('url.delete', ['id' => $url->id])}}" class="btn btn-danger col-md-1 ">DELETE</a>
                         </div>
                     </div>
                 </div>
